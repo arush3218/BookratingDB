@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Book</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        width: 80%;
+        max-width: 500px;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      label {
+        margin: 10px 0 5px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      input {
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+
+      button {
+        padding: 10px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #218838;
+      }
+
+      .back-button {
+        display: block;
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .back-button a {
+        text-decoration: none;
+        color: #007bff;
+        font-size: 14px;
+      }
+
+      .back-button a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Add New Book</h1>
+      <form action="{{ url_for('add') }}" method="POST">
+        <label for="title">Book Name</label>
+        <input name="title" id="title" type="text" required />
+
+        <label for="author">Book Author</label>
+        <input name="author" id="author" type="text" required />
+
+        <label for="rating">Rating</label>
+        <input
+          name="rating"
+          id="rating"
+          type="number"
+          min="0"
+          max="10"
+          step="0.1"
+          required
+        />
+
+        <button type="submit">Add Book</button>
+      </form>
+      <div class="back-button">
+        <a href="{{ url_for('home') }}">Back to Library</a>
+      </div>
+    </div>
+  </body>
+</html>

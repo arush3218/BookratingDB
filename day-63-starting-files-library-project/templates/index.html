@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        width: 80%;
+        max-width: 800px;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+
+      p {
+        text-align: center;
+        color: #666;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      li {
+        background-color: #f9f9f9;
+        margin: 10px 0;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      li a {
+        text-decoration: none;
+        color: #007bff;
+        font-size: 14px;
+      }
+
+      li a:hover {
+        text-decoration: underline;
+      }
+
+      .book-info {
+        flex: 1;
+        margin-left: 10px;
+      }
+
+      .book-info span {
+        display: block;
+        font-weight: bold;
+      }
+
+      .add-button {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .add-button a {
+        text-decoration: none;
+        color: white;
+        background-color: #28a745;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      .add-button a:hover {
+        background-color: #218838;
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .actions a.delete {
+        color: #dc3545;
+      }
+
+      .actions a.edit {
+        color: #007bff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>My Library</h1>
+      {% if books == []: %}
+      <p>Library is empty.</p>
+      {% else %}
+      <ul>
+        {% for book in books %}
+        <li>
+          <div class="book-info">
+            <span>{{book.title}}</span>
+            <small>{{book.author}} - Rating: {{book.rating}}/10</small>
+          </div>
+          <div class="actions">
+            <a href="{{ url_for('edit', id=book.id) }}" class="edit">Edit</a>
+            <a href="{{ url_for('delete', id=book.id) }}" class="delete"
+              >Delete</a
+            >
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      <div class="add-button">
+        <a href="{{ url_for('add') }}">Add New Book</a>
+      </div>
+    </div>
+  </body>
+</html>
